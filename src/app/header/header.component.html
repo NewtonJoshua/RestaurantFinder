@@ -1,30 +1,38 @@
 <nav class="navbar navbar-light bg-faded sticky-top navbar-full fixed-top">
   <div class="container">
-    <!--<img src="http://wearereasonablepeople.nl/wp-content/uploads/2016/01/wearereasonablepeople.png" height="20px">
-    <a class="navbar-brand" href="#">Restaurant Finder</a>-->
+    <a class="navbar-brand" href="#">Restaurant Finder</a>
     <div class="float-right" *ngIf="(user | async)">
-      <div ngbDropdown class="d-inline-block" >
-        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle> {{ (user | async)?.displayName }}</button>
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-outline-primary btn-sm" id="dropdownBasic1" ngbDropdownToggle> {{ (user | async)?.displayName }}</button>
         <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
           <a class="dropdown-item" href="#">{{ (user | async)?.email }}</a>
           <div class="dropdown-divider"></div>
-          <button class="dropdown-item" (click)="logout()">Logout</button>
+          <button class="dropdown-item btn-sm" (click)="logout()">Logout</button>
         </div>
       </div>
       <img src="{{ (user | async)?.photoURL }}" class="rounded" height="35px">
     </div>
 
-     <div class="float-right" *ngIf="!(user | async)">
-      <div ngbDropdown class="d-inline-block" *ngIf="(user | async)">
-        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle> Login</button>
+    <div class="float-right" *ngIf="!(user | async)">
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-outline-primary btn-sm" id="dropdownBasic1" ngbDropdownToggle> Login</button>
         <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
-          <a class="dropdown-item" href="#">{{ (user | async)?.email }}</a>
-          <div class="dropdown-divider"></div>
-          <button class="dropdown-item" (click)="logout()">Logout</button>
+          <div class="btn-group btn-group-sm" role="group" aria-label="First group">
+            <button type="button" class="btn btn-secondary" (click)="login('GoogleAuthProvider')">
+              <img src="https://www.gstatic.com/mobilesdk/160512_mobilesdk/auth_service_google.svg">
+              </button>
+            <button type="button" class="btn btn-secondary" (click)="login('FacebookAuthProvider')">
+              <img src="https://www.gstatic.com/mobilesdk/160409_mobilesdk/images/auth_service_facebook.svg">
+            </button>
+            <button type="button" class="btn btn-secondary" (click)="login('TwitterAuthProvider')">
+              <img src="https://www.gstatic.com/mobilesdk/160409_mobilesdk/images/auth_service_twitter.svg">
+            </button>
+            <button type="button" class="btn btn-secondary" (click)="login('GithubAuthProvider')">
+              <img src="https://www.gstatic.com/mobilesdk/160409_mobilesdk/images/auth_service_github.svg">
+            </button>
+          </div>
         </div>
       </div>
-      <img src="{{ (user | async)?.photoURL }}" class="rounded" height="35px" *ngIf="(user | async)">
-      <button class="btn btn-outline-primary" (click)="login()" >Login</button>
     </div>
 
   </div>

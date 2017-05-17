@@ -1,0 +1,23 @@
+<nav class="navbar navbar-light  justify-content-between">
+  <div class="input-group input-group-sm">
+    <span class="input-group-addon" id="btnGroupAddon">
+        <svg width="20" height="20" class="octicon" aria-hidden="true"><use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#search" /></svg>
+        </span>
+    <input type="text" class="form-control" placeholder="Enter your location" aria-describedby="btnGroupAddon">
+    <span class="input-group-btn">
+        <button class="btn btn-secondary" type="button" (click)="locate()">
+          <svg width="20" height="20" class="octicon" aria-hidden="true"><use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#location" /></svg>
+          Locate Me
+          </button>
+      </span>
+  </div>
+</nav>
+<div class="row">
+  <div class="col">
+    <div id="map"></div>
+  </div>
+  <div class="col">
+    <div class="text-center">
+      <img src="{{placeImageUrl}}" class="rounded" alt="...">
+    </div>
+  </div>
