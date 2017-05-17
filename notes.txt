@@ -1,0 +1,5 @@
+Unusable
+Poor
+Ok
+Good
+Excellent
