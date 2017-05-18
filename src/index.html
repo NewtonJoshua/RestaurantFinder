@@ -3,18 +3,35 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Sample</title>
+  <title>Restaurant Finder</title>
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
     crossorigin="anonymous">
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTFgTCGswFZEIcedjkE0X0CtrRkpvKF78&libraries=places"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTFgTCGswFZEIcedjkE0X0CtrRkpvKF78&libraries=places"></script>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 
 <body>
-  <app-root>Loading...</app-root>
+  <app-root>
+    <div class="container">
+      <!--Initial Loading-->
+      <table style="height: 100vh; width: 100%;">
+        <td style="width:33%"></td>
+        <td class="align-middle" style="width:33%">
+          <div class="card">
+            <img class="card-img-top rounded mx-auto d-block" src="https://newtonjoshua.com/images/logos/logo0trans-compressed.png">
+            <div class="card-block jumbotron ">
+              <div class="loader col-centered"></div>
+            </div>
+            <img class="card-img-bottom rounded mx-auto d-block" src="http://wearereasonablepeople.nl/wp-content/uploads/2016/01/wearereasonablepeople.png">
+          </div>
+        </td>
+        <td style="width:33%"></td>
+      </table>
+    </div>
+  </app-root>
 </body>
 
 </html>

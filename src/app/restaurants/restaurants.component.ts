@@ -14,6 +14,7 @@ export class RestaurantsComponent implements OnInit {
   private pos;
   private service;
   private placeImageUrl;
+  private placeAddress;
   constructor() { }
 
   ngOnInit() {
@@ -43,7 +44,7 @@ export class RestaurantsComponent implements OnInit {
 
         that.map = new that.google.maps.Map(document.getElementById('map'), {
           center: that.pos,
-          zoom: 13,
+          zoom: 14,
           mapTypeId: 'satellite'
         });
 
@@ -77,7 +78,7 @@ export class RestaurantsComponent implements OnInit {
     const request = {
       location: latlng,
       radius: '50',
-      types: ['locality', 'neighborhood', 'street_number', 'administrative_area_level_2']
+      types: ['locality', 'neighborhood', 'political', 'street_number', 'administrative_area_level_2', 'administrative_area_level_3']
     };
 
     this.service = new this.google.maps.places.PlacesService(this.map);
@@ -85,13 +86,23 @@ export class RestaurantsComponent implements OnInit {
     this.service.textSearch(request, (results, status) => {
       let placePhoto;
       if (status === 'OK') {
-        results.every(place => {
-          if (place.photos && !placePhoto) {
+        results.forEach(place => {
+          if (place.photos && !placePhoto && (place.types.includes('administrative_area_level_2') ||
+            place.types.includes('administrative_area_level_3'))) {
             placePhoto = place.photos[0];
             this.placeImageUrl = placePhoto.getUrl({ 'maxHeight': 150 });
-            console.log(place.formatted_address);
+            this.placeAddress = place.formatted_address;
           }
         });
+        if (!placePhoto) {
+          results.forEach(place => {
+            if (place.photos && !placePhoto && place.types.includes('administrative_area_level_1')) {
+              placePhoto = place.photos[0];
+              this.placeImageUrl = placePhoto.getUrl({ 'maxHeight': 150 });
+              this.placeAddress = place.formatted_address;
+            }
+          });
+        }
       }
     });
   }
