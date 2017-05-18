@@ -15,6 +15,7 @@ export class RestaurantsComponent implements OnInit {
   private service;
   private placeImageUrl;
   private placeAddress;
+  private restaurantList = [];
   constructor() { }
 
   ngOnInit() {
@@ -25,6 +26,7 @@ export class RestaurantsComponent implements OnInit {
       zoom: 14,
       mapTypeId: 'satellite'
     });
+    this.locate();
   }
 
 
@@ -32,7 +34,8 @@ export class RestaurantsComponent implements OnInit {
 
 
   locate() {
-    let that = this;
+    this.restaurantList = [];
+    const that = this;
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         that.pos = {
@@ -61,6 +64,7 @@ export class RestaurantsComponent implements OnInit {
           if (status === that.google.maps.places.PlacesServiceStatus.OK) {
             for (let i = 0; i < results.length; i++) {
               that.createMarker(results[i]);
+              this.getPlaceDetails(results[i]);
             }
           }
         });
@@ -108,33 +112,38 @@ export class RestaurantsComponent implements OnInit {
   }
 
   createMarker(place) {
+    const that = this;
     if (place.photos) {
       const placeLoc = place.geometry.location;
-      const marker = new this.google.maps.Marker({
-        map: this.map,
+      const marker = new that.google.maps.Marker({
+        map: that.map,
         position: place.geometry.location
       });
 
-      this.google.maps.event.addListener(marker, 'click', () => {
-        const request = {
-          placeId: place.place_id
-        };
-        this.service.getDetails(request, function (placeDetails, status) {
-          if (status === this.google.maps.places.PlacesServiceStatus.OK) {
-            console.log(placeDetails);
-          }
-        });
-        const contentString = '<div>' +
-          '<h1><img src=' + place.icon + ' height="25px">' + place.name + '</h1>' +
-          '<img src=' + place.photos[0].getUrl({
-            'maxWidth': 200,
-            'maxHeight': 200
-          }) + ' >' +
-          '</div>';
-        this.infowindow.setContent(contentString);
-        this.infowindow.open(this.map, this);
+      that.google.maps.event.addListener(marker, 'click', () => {
+
       });
     }
-
   }
+
+  getPlaceDetails(place) {
+    const request = {
+      placeId: place.place_id
+    };
+    return this.service.getDetails(request, (placeDetails, status) => {
+      if (status === this.google.maps.places.PlacesServiceStatus.OK) {
+        this.restaurantList.push({
+          location: placeDetails.geometry.location,
+          name: placeDetails.name.substring(0, 50),
+          open: placeDetails.opening_hours ? placeDetails.opening_hours.open_now : null,
+          photo: placeDetails.photos ? placeDetails.photos[0].getUrl({ 'maxHeight': 150 }) : null,
+          rating: placeDetails.rating,
+          url: placeDetails.website ? placeDetails.website : placeDetails.url,
+          address: placeDetails.vicinity,
+          phone: placeDetails.international_phone_number
+        });
+      }
+    });
+  }
+
 }
