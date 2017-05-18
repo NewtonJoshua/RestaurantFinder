@@ -34,8 +34,8 @@
       <p class="card-text"></p>
     </div>
     <div class="card-footer">
-      <small class="text-muted" *ngIf="restaurant.open !== null">Open : <span class="badge badge-pill badge-{{restaurant.open ?  'success' : 'danger'}}">{{restaurant.open ?  'Open' : 'Closed'}}</span> </small>      <br>
-      <small class="text-muted" *ngIf="restaurant.rating">Rating : <ngb-rating [(rate)]="restaurant.rating" max="5" [readonly]=true></ngb-rating></small>      <br>
+      <small class="text-muted">Open : <span *ngIf="restaurant.open !== null" class="badge badge-pill badge-{{restaurant.open ?  'success' : 'danger'}}">{{restaurant.open ?  'Open' : 'Closed'}}</span> </small>      <br>
+      <small class="text-muted" *ngIf="restaurant.rating">Others : <ngb-rating [(rate)]="restaurant.rating" max="5" [readonly]=true></ngb-rating></small>      <br>
       <small class="text-muted" *ngIf="restaurant.phone">Call <a href="tel:{{restaurant.phone}}">{{restaurant.phone}}</a></small><br>
       <small class="text-muted" *ngIf="restaurant.url"><a href="{{restaurant.url}}" target="_blank">Visit Website</a></small>
       <!--<small class="text-muted" *ngIf="restaurant.address">Address:  {{restaurant.address}}</small>-->

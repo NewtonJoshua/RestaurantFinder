@@ -131,12 +131,12 @@ export class RestaurantsComponent implements OnInit {
       placeId: place.place_id
     };
     return this.service.getDetails(request, (placeDetails, status) => {
-      if (status === this.google.maps.places.PlacesServiceStatus.OK) {
+      if (status === this.google.maps.places.PlacesServiceStatus.OK && placeDetails.photos && placeDetails.rating) {
         this.restaurantList.push({
           location: placeDetails.geometry.location,
           name: placeDetails.name.substring(0, 50),
           open: placeDetails.opening_hours ? placeDetails.opening_hours.open_now : null,
-          photo: placeDetails.photos ? placeDetails.photos[0].getUrl({ 'maxHeight': 150 }) : null,
+          photo: placeDetails.photos[0].getUrl({ 'maxHeight': 150 }),
           rating: placeDetails.rating,
           url: placeDetails.website ? placeDetails.website : placeDetails.url,
           address: placeDetails.vicinity,
