@@ -1,5 +1,1 @@
-Unusable
-Poor
-Ok
-Good
-Excellent
+https://googlechrome.github.io/lighthouse/viewer/?gist=8ebd333a359cc71a0c6b6ffd88fede86

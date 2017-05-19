@@ -7,9 +7,12 @@
   <base href="/">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#333">
+  <meta name="author" content="Newton Joshua">
+  <meta name="designer" content="Newton Joshua">
+  <meta name="email" content="NeJo@NewtonJoshua.com">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
-    crossorigin="anonymous">
+    crossorigin="anonymous" media="all">
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTFgTCGswFZEIcedjkE0X0CtrRkpvKF78&libraries=places"></script>
   <link rel="icon" type="image/x-icon" href="assets/images/restaurant-71.png">
 </head>
@@ -25,7 +28,7 @@
         <td style="width:33%"></td>
         <td class="align-middle" style="width:33%">
           <div class="card">
-            <img class="card-img-top rounded mx-auto d-block" src="https://newtonjoshua.com/images/logos/logo0trans-compressed.png">
+            <img class="card-img-top rounded mx-auto d-block" src="assets/images/logo0trans-compressed.png">
             <div class="card-block jumbotron ">
               <div class="loader col-centered"></div>
             </div>
@@ -42,12 +45,13 @@
   if ('serviceWorker' in navigator) {
     console.log("Will the service worker register?");
     navigator.serviceWorker.register('service-worker.js')
-      .then(function(reg){
+      .then(function (reg) {
         console.log("Yes, it did.");
-      }).catch(function(err) {
+      }).catch(function (err) {
         console.log("No it didn't. This happened: ", err)
       });
   }
+
 </script>
 
 
