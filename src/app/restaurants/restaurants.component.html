@@ -12,14 +12,34 @@
       </span>
   </div>
 </nav>
+<h6 class="text-muted">Your location: {{placeAddress}}</h6>
 <div class="row">
   <div class="col-md-6">
-    <h6 class="text-muted">Restaurants position near you</h6>
-    <div id="map"></div>
-  </div>
-  <div class="col-md-6">
-    <h6 class="text-muted">Your location: {{placeAddress}}</h6>
     <div class="text-center">
       <img src="{{placeImageUrl}}" class="rounded" alt="...">
     </div>
   </div>
+  <div class="col-md-6">
+    <div id="map"></div>
+  </div>
+</div>
+
+<hr>
+
+<div class="card-columns">
+  <div class="card card-inverse " style="background-color: #333; border-color: #333;" *ngFor="let restaurant of restaurantList">
+    <img class="card-img-top" src="{{ restaurant.photo }}"style="width: 100%; display: block; height:150px;">
+    <div class="card-block">
+      <h6 class="card-title">{{ restaurant.name }}</h6>
+      <p class="card-text"></p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Open : <span *ngIf="restaurant.open !== null" class="badge badge-pill badge-{{restaurant.open ?  'success' : 'danger'}}">{{restaurant.open ?  'Open' : 'Closed'}}</span> </small>      <br>
+      <small class="text-muted" *ngIf="restaurant.rating">Others : <ngb-rating [(rate)]="restaurant.rating" max="5" [readonly]=true></ngb-rating></small>      <br>
+      <small class="text-muted" *ngIf="restaurant.phone">Call <a href="tel:{{restaurant.phone}}">{{restaurant.phone}}</a></small><br>
+      <small class="text-muted" *ngIf="restaurant.url"><a href="{{restaurant.url}}" target="_blank">Visit Website</a></small>
+      <!--<small class="text-muted" *ngIf="restaurant.address">Address:  {{restaurant.address}}</small>-->
+    </div>
+
+  </div>
+</div>
