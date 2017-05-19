@@ -1,0 +1,15 @@
+{
+  "short_name": "NewtonJoshua",
+  "name": "Restaurant Finder",
+  "icons": [
+    {
+      "src":"assets/images/restaurant-71.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "",
+  "background_color": "#000",
+  "theme_color": "#333",
+  "display": "standalone"
+}

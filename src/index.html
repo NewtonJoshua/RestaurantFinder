@@ -5,15 +5,19 @@
   <meta charset="utf-8">
   <title>Restaurant Finder</title>
   <base href="/">
-  <meta name="theme-color" content="rgb(108, 11, 14)">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#333">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
     crossorigin="anonymous">
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTFgTCGswFZEIcedjkE0X0CtrRkpvKF78&libraries=places"></script>
-  <link rel="icon" type="image/x-icon" href="https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png">
+  <link rel="icon" type="image/x-icon" href="assets/images/restaurant-71.png">
 </head>
 
 <body>
+  <noscript>
+    JavaScript is disabled. JavaScript is required to use the app. Kindly enable it.
+  </noscript>
   <app-root>
     <div class="container">
       <!--Initial Loading-->
@@ -25,7 +29,7 @@
             <div class="card-block jumbotron ">
               <div class="loader col-centered"></div>
             </div>
-            <img class="card-img-bottom rounded mx-auto d-block" src="http://wearereasonablepeople.nl/wp-content/uploads/2016/01/wearereasonablepeople.png">
+            <img class="card-img-bottom rounded mx-auto d-block" src="assets/images/wearereasonablepeople.png">
           </div>
         </td>
         <td style="width:33%"></td>
@@ -33,5 +37,18 @@
     </div>
   </app-root>
 </body>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    console.log("Will the service worker register?");
+    navigator.serviceWorker.register('service-worker.js')
+      .then(function(reg){
+        console.log("Yes, it did.");
+      }).catch(function(err) {
+        console.log("No it didn't. This happened: ", err)
+      });
+  }
+</script>
+
 
 </html>

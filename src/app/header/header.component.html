@@ -1,10 +1,10 @@
 <nav class="navbar navbar-inverse bg-inverse navbar-full fixed-top  sticky-top">
   <div class="container">
-    <img src="https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png" height="20" alt="">
+    <img src="../../assets/images/restaurant-71.png" height="20" alt="">
     <a class="navbar-brand" href="#">Restaurant Finder</a>
     <div class="float-right" *ngIf="(user | async)">
       <div ngbDropdown class="d-inline-block">
-        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle> {{ (user | async)?.displayName }}</button>
+        <button class="btn btn-outline-secondary" id="dropdownBasic1" ngbDropdownToggle> {{ (user | async)?.displayName }}</button>
         <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
           <a class="dropdown-item" href="#">{{ (user | async)?.email }}</a>
           <div class="dropdown-divider"></div>
@@ -16,8 +16,8 @@
 
     <div class="float-right" *ngIf="!(user | async)">
       <div ngbDropdown class="d-inline-block">
-        <button class="btn btn-outline-primary " id="dropdownBasic1" ngbDropdownToggle> Login</button>
-        <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
+        <button class="btn btn-outline-secondary" id="dropdownBasic2" ngbDropdownToggle> Login</button>
+        <div class="dropdown-menu" aria-labelledby="dropdownBasic2">
           <div class="btn-group" role="group" aria-label="First group">
             <button type="button" class="btn btn-secondary" (click)="login('GoogleAuthProvider')">
               <img src="https://www.gstatic.com/mobilesdk/160512_mobilesdk/auth_service_google.svg">

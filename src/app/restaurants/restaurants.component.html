@@ -3,7 +3,7 @@
     <span class="input-group-addon" id="btnGroupAddon">
         <svg width="20" height="20" class="octicon" aria-hidden="true"><use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#search" /></svg>
         </span>
-    <input type="text" class="form-control" placeholder="Enter your location" aria-describedby="btnGroupAddon">
+    <input type="text" class="form-control" placeholder="Enter your location" aria-describedby="btnGroupAddon" aria-label="location">
     <span class="input-group-btn">
         <button class="btn btn-secondary" type="button" (click)="locate()">
           <svg width="20" height="20" class="octicon" aria-hidden="true"><use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#location" /></svg>
@@ -32,8 +32,8 @@
 <h5 class="text-muted">Restaurants near you</h5>
 <div class="card-columns">
   <div class="card card-inverse " style="background-color: #333; border-color: #333;" *ngFor="let restaurant of restaurantList">
-    <img class="card-img-top" src="{{ restaurant.photo ? restaurant.photo : 'https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png'}}"
-      style="width: 100%; display: block; height:150px;">
+    <img class="card-img-top" src="{{ restaurant.photo ? restaurant.photo : '../../assets/images/restaurant-71.png'}}"
+      style="width: 100%; display: block; height:150px;" alt="Restaurant Image">
     <div class="card-block">
       <h6 class="card-title">{{ restaurant.name }}</h6>
       <small class="card-text">Other people's experience : 
@@ -51,7 +51,7 @@
       <small class="text-muted">Call: <a href="tel:{{restaurant.phone}}" *ngIf="restaurant.phone">{{restaurant.phone}}</a> 
       <span *ngIf="!restaurant.phone" class="badge badge-pill badge-warning">Not Available</span>
       </small><br>
-      <small class="text-muted" *ngIf="restaurant.url"><a href="{{restaurant.url}}" target="_blank">Visit Website</a></small>
+      <small class="text-muted" *ngIf="restaurant.url"><a href="{{restaurant.url}}" target="_blank"  rel="noopener" >Visit Website</a></small>
       <!--<small class="text-muted" *ngIf="restaurant.address">Address:  {{restaurant.address}}</small>-->
     </div>
 
