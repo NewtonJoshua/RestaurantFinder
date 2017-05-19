@@ -25,6 +25,7 @@ export class RestaurantsComponent implements OnInit {
       zoom: 14,
       mapTypeId: 'satellite'
     });
+    this.locate();
   }
 
 
@@ -32,7 +33,7 @@ export class RestaurantsComponent implements OnInit {
 
 
   locate() {
-    let that = this;
+    const that = this;
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         that.pos = {
@@ -40,6 +41,11 @@ export class RestaurantsComponent implements OnInit {
           lng: position.coords.longitude
         };
         that.map.setCenter(that.pos);
+        const marker = new this.google.maps.Marker({
+          map: this.map,
+          position: new this.google.maps.LatLng(position.coords.latitude, position.coords.longitude)
+        });
+        this.createMarker(that.pos);
         this.getPlaceName(position);
 
         that.map = new that.google.maps.Map(document.getElementById('map'), {
@@ -108,6 +114,7 @@ export class RestaurantsComponent implements OnInit {
   }
 
   createMarker(place) {
+    const that = this;
     if (place.photos) {
       const placeLoc = place.geometry.location;
       const marker = new this.google.maps.Marker({
@@ -119,20 +126,11 @@ export class RestaurantsComponent implements OnInit {
         const request = {
           placeId: place.place_id
         };
-        this.service.getDetails(request, function (placeDetails, status) {
-          if (status === this.google.maps.places.PlacesServiceStatus.OK) {
+        that.service.getDetails(request, function (placeDetails, status) {
+          if (status === that.google.maps.places.PlacesServiceStatus.OK) {
             console.log(placeDetails);
           }
         });
-        const contentString = '<div>' +
-          '<h1><img src=' + place.icon + ' height="25px">' + place.name + '</h1>' +
-          '<img src=' + place.photos[0].getUrl({
-            'maxWidth': 200,
-            'maxHeight': 200
-          }) + ' >' +
-          '</div>';
-        this.infowindow.setContent(contentString);
-        this.infowindow.open(this.map, this);
       });
     }
 
