@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { RestaurantModalComponent } from './../restaurant-modal/restaurant-modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { GoogleMapsService } from './../google-maps-service/google-maps.service';
 
 @Component({
   selector: 'app-restaurants',
   templateUrl: './restaurants.component.html',
-  styleUrls: ['./restaurants.component.css']
+  styleUrls: ['./restaurants.component.css'],
+  providers: [GoogleMapsService]
 })
 export class RestaurantsComponent implements OnInit {
 
@@ -16,9 +20,11 @@ export class RestaurantsComponent implements OnInit {
   private placeImageUrl;
   private placeAddress;
   private restaurantList = [];
-  constructor() { }
+
+  constructor(private modalService: NgbModal, private googleMapsService: GoogleMapsService) { }
 
   ngOnInit() {
+
     this.google = (<any>window).google;
     this.geocoder = new this.google.maps.Geocoder();
     this.map = new this.google.maps.Map(document.getElementById('map'), {
@@ -29,10 +35,7 @@ export class RestaurantsComponent implements OnInit {
     this.locate();
   }
 
-
   // Try HTML5 geolocation.
-
-
   locate() {
     this.restaurantList = [];
     const that = this;
@@ -42,18 +45,32 @@ export class RestaurantsComponent implements OnInit {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
-        that.map.setCenter(that.pos);
-        const marker = new this.google.maps.Marker({
-          map: this.map,
-          position: new this.google.maps.LatLng(position.coords.latitude, position.coords.longitude)
-        });
-        this.createMarker(that.pos);
         this.getPlaceName(position);
 
         that.map = new that.google.maps.Map(document.getElementById('map'), {
           center: that.pos,
           zoom: 14,
-          mapTypeId: 'satellite'
+          mapTypeId: that.google.maps.MapTypeId.HYBRID,
+          disableDefaultUI: true
+        });
+
+        const trafficLayer = new that.google.maps.TrafficLayer();
+        trafficLayer.setMap(that.map);
+        const transitLayer = new that.google.maps.TransitLayer();
+        transitLayer.setMap(that.map);
+
+        const marker = new that.google.maps.Marker({
+          map: that.map,
+          animation: that.google.maps.Animation.DROP,
+          position: that.pos,
+          icon: {
+            path: that.google.maps.SymbolPath.CIRCLE,
+            scale: 8
+          }
+        });
+        marker.addListener('click', () => {
+          marker.setAnimation(this.google.maps.Animation.BOUNCE);
+          setTimeout(() => marker.setAnimation(null), 2000);
         });
 
         that.infowindow = new that.google.maps.InfoWindow();
@@ -62,13 +79,9 @@ export class RestaurantsComponent implements OnInit {
           location: that.pos,
           radius: 1000,
           type: ['restaurant'], // Restricts the results to places matching restaurant
-          // openNow: true,
-          // minPriceLevel: 0,
-          // maxPriceLevel: 4
         }, (results, status) => {
           if (status === that.google.maps.places.PlacesServiceStatus.OK) {
             for (let i = 0; i < results.length; i++) {
-              that.createMarker(results[i]);
               this.getPlaceDetails(results[i]);
             }
           }
@@ -116,19 +129,20 @@ export class RestaurantsComponent implements OnInit {
     });
   }
 
-  createMarker(place) {
+  createMarker(placeLoc, placeName) {
     const that = this;
-    if (place.photos) {
-      const placeLoc = place.geometry.location;
-      const marker = new this.google.maps.Marker({
-        map: this.map,
-        position: place.geometry.location
-      });
+    const marker = new this.google.maps.Marker({
+      map: this.map,
+      position: placeLoc,
+      animation: that.google.maps.Animation.DROP
+    });
+    const infoWindow = new this.google.maps.InfoWindow({
+      content: '<span style="color:black">' + placeName + '</span>'
+    });
 
-      this.google.maps.event.addListener(marker, 'click', () => {
-
-      });
-    }
+    this.google.maps.event.addListener(marker, 'click', () => {
+      infoWindow.open(this.map, marker);
+    });
   }
 
   getPlaceDetails(place) {
@@ -137,9 +151,10 @@ export class RestaurantsComponent implements OnInit {
     };
     return this.service.getDetails(request, (placeDetails, status) => {
       if (status === this.google.maps.places.PlacesServiceStatus.OK) {
+        const placeName = placeDetails.name.substring(0, 50);
         this.restaurantList.push({
           location: placeDetails.geometry.location,
-          name: placeDetails.name.substring(0, 50),
+          name: placeName,
           open: placeDetails.opening_hours ? placeDetails.opening_hours.open_now : null,
           photo: placeDetails.photos ? placeDetails.photos[0].getUrl({ 'maxHeight': 150 }) : null,
           rating: placeDetails.rating,
@@ -147,7 +162,15 @@ export class RestaurantsComponent implements OnInit {
           address: placeDetails.vicinity,
           phone: placeDetails.international_phone_number
         });
+        this.createMarker(placeDetails.geometry.location, placeName);
       }
     });
   }
+
+
+  openModal() {
+    const modalRef = this.modalService.open(RestaurantModalComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.name = 'World';
+  }
+
 }

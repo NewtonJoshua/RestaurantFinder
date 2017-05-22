@@ -10,12 +10,14 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
+import { RestaurantModalComponent } from './restaurant-modal/restaurant-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    RestaurantsComponent
+    RestaurantsComponent,
+    RestaurantModalComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +27,7 @@ import { RestaurantsComponent } from './restaurants/restaurants.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule
   ],
+  entryComponents: [RestaurantModalComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

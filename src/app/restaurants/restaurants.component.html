@@ -15,34 +15,38 @@
 
 <div class="card card-inverse" style="background-color: #333; border-color: #333;">
   <div class="card-block">
-    <h6 class="card-title">Your location: {{placeAddress}}</h6>
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-4">
+        <h6 class="card-title">Your location: {{placeAddress}}</h6>
         <div class="text-center">
           <img src="{{placeImageUrl}}" class="rounded" alt="...">
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-8">
         <div id="map"></div>
       </div>
     </div>
   </div>
 </div>
+
 <hr>
+
 <h5 class="text-muted">Restaurants near you</h5>
-<div class="card-columns">
-  <div class="card card-inverse " style="background-color: #333; border-color: #333;" *ngFor="let restaurant of restaurantList">
-    <img class="card-img-top" src="{{ restaurant.photo ? restaurant.photo : '../../assets/images/restaurant-71.png'}}"
-      style="width: 100%; display: block; height:150px;" alt="Restaurant Image">
+
+<div class="card-deck">
+  <div class="card card-inverse " style="margin-bottom: 20px; background-color: #333; border-color: #333; cursor:pointer;"
+    *ngFor="let restaurant of restaurantList" (click)="openModal()">
+    <img class="card-img-top" src="{{ restaurant.photo ? restaurant.photo : '../../assets/images/restaurant-71.png'}}" style="width: 100%; display: block; height:150px;"
+      alt="Restaurant Image">
     <div class="card-block">
       <h6 class="card-title">{{ restaurant.name }}</h6>
-      <small class="card-text">Other people's experience : 
+      <small class="card-text" ngbTooltip="Other people's experience">
         <ngb-rating [(rate)]="restaurant.rating" max="5" [readonly]=true *ngIf="restaurant.rating">
           <ng-template let-fill="fill">
             <span class="star" [class.filled]="fill === 100">&#9733;</span>
           </ng-template>  
         </ngb-rating>
-        <span *ngIf="!restaurant.rating" class="badge badge-pill badge-warning">Not Available</span>
+        <span *ngIf="!restaurant.rating" class="badge badge-pill badge-warning">Rating Not Available</span>
     </small>
     </div>
     <div class="card-footer">
