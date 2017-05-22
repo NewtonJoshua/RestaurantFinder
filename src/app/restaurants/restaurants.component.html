@@ -17,9 +17,9 @@
   <div class="card-block">
     <div class="row">
       <div class="col-md-4">
-        <h6 class="card-title">Your location: {{placeAddress}}</h6>
+        <h6 class="card-title">Your location: {{placeAddress | async}}</h6>
         <div class="text-center">
-          <img src="{{placeImageUrl}}" class="rounded" alt="...">
+          <img src="{{placeImageUrl | async}}" class="rounded" alt="...">
         </div>
       </div>
       <div class="col-md-8">
