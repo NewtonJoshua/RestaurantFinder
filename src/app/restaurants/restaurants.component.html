@@ -1,28 +1,29 @@
-<nav class="navbar navbar-light  justify-content-between">
-  <div class="input-group input-group-sm">
-    <span class="input-group-addon" id="btnGroupAddon">
-        <svg width="20" height="20" class="octicon" aria-hidden="true"><use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#search" /></svg>
-        </span>
-    <input type="text" class="form-control" placeholder="Enter your location" aria-describedby="btnGroupAddon" aria-label="location">
-    <span class="input-group-btn">
-        <button class="btn btn-secondary" type="button" (click)="locate()">
-          <svg width="20" height="20" class="octicon" aria-hidden="true"><use xlink:href="/node_modules/octicons/build/sprite.octicons.svg#location" /></svg>
-          Locate Me
-          </button>
-      </span>
-  </div>
-</nav>
+<br>
 
-<div class="card card-inverse" style="background-color: #333; border-color: #333;">
+<div class="card card-inverse location-bar">
   <div class="card-block">
     <div class="row">
       <div class="col-md-4">
         <h6 class="card-title">Your location: {{placeAddress | async}}</h6>
         <div class="text-center">
-          <img src="{{placeImageUrl | async}}" class="rounded" alt="...">
+          <img src="{{placeImageUrl | async}}" class="rounded" alt="{{placeAddress | async}}">
         </div>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-2 hidden-sm-down">
+        <div class="card card-inverse card-info mb-3 text-center">
+          <div class="card-block search-button" (click)="ngOnInit()">
+            <blockquote class="card-blockquote">
+              <small>Show restaurants</small>
+              <img src="assets/images/icon_placesapi.svg" class="rounded-circle search-img">
+              <small>near you</small>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 hidden-sm-up">
+        <br>
+      </div>
+      <div class="col-md-6 ">
         <div id="map"></div>
       </div>
     </div>
@@ -34,9 +35,8 @@
 <h5 class="text-muted">Restaurants near you</h5>
 
 <div class="card-deck">
-  <div class="card card-inverse " style="margin-bottom: 20px; background-color: #333; border-color: #333; cursor:pointer;"
-    *ngFor="let restaurant of restaurantList" (click)="openModal()">
-    <img class="card-img-top" src="{{ restaurant.photo ? restaurant.photo : '../../assets/images/restaurant-71.png'}}" style="width: 100%; display: block; height:150px;"
+  <div class="card card-inverse reataurants" *ngFor="let restaurant of restaurantList" (click)="openModal(restaurant)">
+    <img class="card-img-top restaurant-image" src="{{ restaurant.photo ? restaurant.photo : '../../assets/images/restaurant-71.png'}}"
       alt="Restaurant Image">
     <div class="card-block">
       <h6 class="card-title">{{ restaurant.name }}</h6>
@@ -56,7 +56,6 @@
       <span *ngIf="!restaurant.phone" class="badge badge-pill badge-warning">Not Available</span>
       </small><br>
       <small class="text-muted" *ngIf="restaurant.url"><a href="{{restaurant.url}}" target="_blank"  rel="noopener" >Visit Website</a></small>
-      <!--<small class="text-muted" *ngIf="restaurant.address">Address:  {{restaurant.address}}</small>-->
     </div>
 
   </div>

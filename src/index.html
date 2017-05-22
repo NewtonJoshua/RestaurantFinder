@@ -1,16 +1,15 @@
 <!doctype html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
   <title>Restaurant Finder</title>
   <base href="/">
   <link rel="manifest" href="/manifest.json">
-  <meta name="theme-color" content="#333">
   <meta name="author" content="Newton Joshua">
   <meta name="designer" content="Newton Joshua">
   <meta name="email" content="NeJo@NewtonJoshua.com">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
     crossorigin="anonymous" media="all">
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTFgTCGswFZEIcedjkE0X0CtrRkpvKF78&libraries=places"></script>
@@ -24,20 +23,21 @@
   <app-root>
     <div class="container">
       <!--Initial Loading-->
-      <table style="height: 100vh; width: 100%;">
-        <td style="width:33%"></td>
-        <td class="align-middle" style="width:33%">
+      <div class="row ">
+        <div class="col hidden-sm-down">
+        </div>
+        <div class="col align-middle">
           <div class="card">
-            <img class="card-img-top rounded mx-auto d-block" src="assets/images/logo0trans-compressed.png">
+            <img class="card-img-top rounded img-fluid" src="assets/images/logo0trans-compressed.png">
             <div class="card-block jumbotron ">
               <div class="loader col-centered"></div>
             </div>
-            <img class="card-img-bottom rounded mx-auto d-block" src="assets/images/wearereasonablepeople.png">
+            <img class="card-img-bottom rounded img-fluid" src="assets/images/wearereasonablepeople.png">
           </div>
-        </td>
-        <td style="width:33%"></td>
-      </table>
-    </div>
+        </div>
+        <div class="col hidden-sm-down">
+        </div>
+      </div>
   </app-root>
 </body>
 
@@ -52,7 +52,24 @@
       });
   }
 
-</script>
+  // Set-up Twitter for Websites
+  window.twttr = (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+      t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "assets/lib/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
 
+    t._e = [];
+    t.ready = function (f) {
+      t._e.push(f);
+    };
+
+    return t;
+  }(document, "script", "twitter-wjs"));
+
+</script>
 
 </html>

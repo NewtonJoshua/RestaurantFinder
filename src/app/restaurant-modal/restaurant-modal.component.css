@@ -1,0 +1,13 @@
+#directionMap {
+  height: 300px;
+}
+
+.disabledbutton {
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.card-background {
+  background-color: #333;
+  border-color: #333;
+}

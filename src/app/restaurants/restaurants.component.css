@@ -19,9 +19,37 @@
 }
 
 .star {
-      font-size: 1.5rem;
-      color: #b0c4de;
-    }
-    .filled {
-      color: #1e90ff;
-    }
+  font-size: 1.5rem;
+  color: #b0c4de;
+}
+
+.filled {
+  color: #1e90ff;
+}
+
+.location-bar {
+  background-color: #333;
+  border-color: #333;
+}
+
+.reataurants {
+  margin-bottom: 20px;
+  background-color: #333;
+  border-color: #333;
+  cursor: pointer;
+}
+
+.restaurant-image {
+  width: 100%;
+  display: block;
+  height: 150px;
+}
+
+.search-button{
+  cursor: pointer;
+  height: 200px;
+}
+
+.search-img{
+  max-width: 80px;
+}

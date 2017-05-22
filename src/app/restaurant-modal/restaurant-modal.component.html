@@ -1,12 +1,40 @@
 <div class="modal-header">
-      <h4 class="modal-title">Hi there!</h4>
-      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+  <h4 class="modal-title">{{restaurant.name}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card card-inverse text-center card-background">
+        <div class="card-header">
+          <h6 class="text-muted">Let's go there...</h6>
+        </div>
+        <div class="card-block">
+          <div id="directionMap"></div>
+        </div>
+      </div>
     </div>
-    <div class="modal-body">
-      <p>Hello, {{name}}!</p>
+    <div class="col-md-6">
+      <div class="card card-inverse card-background">
+        <div class="card-header text-center">
+          <h6 class="text-muted">Already been there?</h6>
+        </div>
+        <div class="card-block">
+
+          <form>
+            <div class="form-group">
+              <label for="experience">Share your experience</label>
+              <textarea class="form-control" id="experience" rows="7" [(ngModel)]="review" [ngModelOptions]="{standalone: true}" (change)="createTweetButton(); enableTweetButton()"></textarea>
+            </div>
+            <div id="tweet" class="disabledbutton"></div>
+          </form>
+        </div>
+      </div>
     </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Close</button>
-    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Close</button>
+</div>

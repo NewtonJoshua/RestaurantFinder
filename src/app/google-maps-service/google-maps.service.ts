@@ -155,8 +155,34 @@ export class GoogleMapsService {
     });
   }
 
-
-
+  getDirections(elememt, origin, destination) {
+    const directionsService = new this.google.maps.DirectionsService;
+    const directionsDisplay = new this.google.maps.DirectionsRenderer;
+    const center = {
+      lat: (origin.lat + destination.lat()) / 2,
+      lng: (origin.lng + destination.lng()) / 2
+    }
+    const map = new this.google.maps.Map(elememt, {
+      center: center,
+      disableDefaultUI: true,
+      zoom: 14
+    });
+    const trafficLayer = new this.google.maps.TrafficLayer();
+    trafficLayer.setMap(map);
+    directionsDisplay.setMap(map);
+    directionsService.route({
+      origin: origin,
+      destination: destination,
+      travelMode: 'DRIVING',
+      provideRouteAlternatives: true
+    }, function (response, status) {
+      if (status === 'OK') {
+        directionsDisplay.setDirections(response);
+      } else {
+        window.alert('Directions request failed due to ' + status);
+      }
+    });
+  }
 
 
 }

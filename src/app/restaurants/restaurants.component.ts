@@ -16,11 +16,14 @@ export class RestaurantsComponent implements OnInit {
   private placeImageUrl: Observable<string>;
   private placeAddress: Observable<string>;
   private restaurantList = [];
+  private currentPosition;
 
   constructor(private modalService: NgbModal, private googleMapsService: GoogleMapsService) { }
 
   ngOnInit() {
+    this.restaurantList = [];
     this.googleMapsService.getLocation().subscribe(position => {
+      this.currentPosition = position;
       this.googleMapsService.createMap(document.getElementById('map'), position);
       this.googleMapsService.getLocationDetails(position).subscribe(locationDetails => {
         this.placeImageUrl = Observable.of(locationDetails.placeImageUrl);
@@ -36,9 +39,10 @@ export class RestaurantsComponent implements OnInit {
     });
   }
 
-  openModal() {
+  openModal(restaurant) {
     const modalRef = this.modalService.open(RestaurantModalComponent, { size: 'lg', backdrop: 'static' });
-    modalRef.componentInstance.name = 'World';
+    modalRef.componentInstance.restaurant = restaurant;
+    modalRef.componentInstance.currentPosition = this.currentPosition;
   }
 
 }
