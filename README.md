@@ -101,5 +101,7 @@ The time taken to develop, test, deploy, document this web app is apprx. 16 hrs,
 ## About the developer
 
 The AITAM products are developed by Newton Joshua 
+
 Know more @  [NewtonJoshua.com](https://newtonjoshua.com/).
+
 Socialize @ [FaceBook](https://www.facebook.com/NewtonJoshua.A).
