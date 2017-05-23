@@ -4,45 +4,42 @@
     "name": "restaurant_finder",
     "ejected": false
   },
-  "apps": [
-    {
-      "root": "src",
-      "outDir": "dist",
-      "assets": [
-        "assets",
-        "favicon.ico",
-        "service-worker.js",
-        "manifest.json",
-        "docs",
-        "docs/globals.html"
-      ],
-      "index": "index.html",
-      "main": "main.ts",
-      "polyfills": "polyfills.ts",
-      "test": "test.ts",
-      "tsconfig": "tsconfig.app.json",
-      "testTsconfig": "tsconfig.spec.json",
-      "prefix": "app",
-      "styles": [
-        "styles.css",
-        "../node_modules/octicons/build/octicons.min.css"
-      ],
-      "scripts": [
-      ],
-      "environmentSource": "environments/environment.ts",
-      "environments": {
-        "dev": "environments/environment.ts",
-        "prod": "environments/environment.prod.ts"
-      }
+  "apps": [{
+    "root": "src",
+    "outDir": "dist",
+    "assets": [
+      "assets",
+      "favicon.ico",
+      "service-worker.js",
+      "manifest.json",
+      "docs",
+      "docs/globals.html",
+      "docs/lighthouse-results.html"
+    ],
+    "index": "index.html",
+    "main": "main.ts",
+    "polyfills": "polyfills.ts",
+    "test": "test.ts",
+    "tsconfig": "tsconfig.app.json",
+    "testTsconfig": "tsconfig.spec.json",
+    "prefix": "app",
+    "styles": [
+      "styles.css",
+      "../node_modules/octicons/build/octicons.min.css"
+    ],
+    "scripts": [],
+    "environmentSource": "environments/environment.ts",
+    "environments": {
+      "dev": "environments/environment.ts",
+      "prod": "environments/environment.prod.ts"
     }
-  ],
+  }],
   "e2e": {
     "protractor": {
       "config": "./protractor.conf.js"
     }
   },
-  "lint": [
-    {
+  "lint": [{
       "project": "src/tsconfig.app.json"
     },
     {
@@ -59,7 +56,6 @@
   },
   "defaults": {
     "styleExt": "css",
-    "component": {
-    }
+    "component": {}
   }
 }
