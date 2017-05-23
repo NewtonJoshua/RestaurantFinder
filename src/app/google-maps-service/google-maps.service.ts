@@ -161,7 +161,7 @@ export class GoogleMapsService {
     const center = {
       lat: (origin.lat + destination.lat()) / 2,
       lng: (origin.lng + destination.lng()) / 2
-    }
+    };
     const map = new this.google.maps.Map(elememt, {
       center: center,
       disableDefaultUI: true,

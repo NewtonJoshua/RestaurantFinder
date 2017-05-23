@@ -1,4 +1,4 @@
-#map {
+.map {
   height: 200px;
 }
 
@@ -19,8 +19,8 @@
 }
 
 .star {
-  font-size: 1.5rem;
   color: #b0c4de;
+  font-size: 1.5rem;
 }
 
 .filled {
@@ -33,23 +33,23 @@
 }
 
 .reataurants {
-  margin-bottom: 20px;
   background-color: #333;
   border-color: #333;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 
 .restaurant-image {
-  width: 100%;
   display: block;
   height: 150px;
+  width: 100%;
 }
 
-.search-button{
+.search-button {
   cursor: pointer;
   height: 200px;
 }
 
-.search-img{
+.search-img {
   max-width: 80px;
 }

@@ -6,6 +6,7 @@
   <title>Restaurant Finder</title>
   <base href="/">
   <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#333">
   <meta name="author" content="Newton Joshua">
   <meta name="designer" content="Newton Joshua">
   <meta name="email" content="NeJo@NewtonJoshua.com">
@@ -14,9 +15,44 @@
     crossorigin="anonymous" media="all">
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTFgTCGswFZEIcedjkE0X0CtrRkpvKF78&libraries=places"></script>
   <link rel="icon" type="image/x-icon" href="assets/images/restaurant-71.png">
+
+  <script>
+    // Set-up Twitter for Websites
+    window.twttr = (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {};
+      if (d.getElementById(id)) return t;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "assets/lib/widgets.js";
+      fjs.parentNode.insertBefore(js, fjs);
+
+      t._e = [];
+      t.ready = function (f) {
+        t._e.push(f);
+      };
+
+      return t;
+    }(document, "script", "twitter-wjs"));
+
+
+    if ('serviceWorker' in navigator) {
+      console.log("Will the service worker register?");
+      navigator.serviceWorker.register('service-worker.js')
+        .then(function (reg) {
+          console.log("Yes, it did.");
+        }).catch(function (err) {
+          console.log("No it didn't. This happened: ", err)
+        });
+    }
+
+  </script>
+
 </head>
 
 <body>
+
+  <a href="https://github.com/NewtonJoshua/RestaurantFinder" target="_blank"><img class="ribbon" src="assets/images/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" data-canonical-src="assets/images/forkme_right_darkblue_121621.png"></a>
   <noscript>
     JavaScript is disabled. JavaScript is required to use the app. Kindly enable it.
   </noscript>
@@ -39,37 +75,8 @@
         </div>
       </div>
   </app-root>
+
 </body>
 
-<script>
-  if ('serviceWorker' in navigator) {
-    console.log("Will the service worker register?");
-    navigator.serviceWorker.register('service-worker.js')
-      .then(function (reg) {
-        console.log("Yes, it did.");
-      }).catch(function (err) {
-        console.log("No it didn't. This happened: ", err)
-      });
-  }
-
-  // Set-up Twitter for Websites
-  window.twttr = (function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0],
-      t = window.twttr || {};
-    if (d.getElementById(id)) return t;
-    js = d.createElement(s);
-    js.id = id;
-    js.src = "assets/lib/widgets.js";
-    fjs.parentNode.insertBefore(js, fjs);
-
-    t._e = [];
-    t.ready = function (f) {
-      t._e.push(f);
-    };
-
-    return t;
-  }(document, "script", "twitter-wjs"));
-
-</script>
 
 </html>
