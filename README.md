@@ -1,14 +1,13 @@
-# Warp
+[![Build Status](https://travis-ci.org/NewtonJoshua/RestaurantFinder.svg?branch=master)](https://travis-ci.org/NewtonJoshua/RestaurantFinder)
+[![dependencies Status](https://david-dm.org/NewtonJoshua/RestaurantFinder/status.svg)](https://david-dm.org/NewtonJoshua/RestaurantFinder)
+[![Twitter](https://img.shields.io/twitter/url/https/github.com/NewtonJoshua/RestaurantFinder.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=%5Bobject%20Object%5D)
+# Restaurant Finder
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-rc.2.
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
 
 ## Build
 
