@@ -96,6 +96,13 @@ FireBase is used to easily deploy and host this app's static assets (HTML, CSS, 
 
 Refer [FireBase Hosting Documentation](https://firebase.google.com/docs/hosting/quickstart).
 
+## Test with different GeoLocation
+
+To test the functionality of the web app you can manipulate the current geolocation in the chrome browser and search for restaurants.
+
+Refer [Emulating Geolocation](https://developers.google.com/web/tools/chrome-devtools/device-mode/device-input-and-sensors).
+ 
+
 ## Time taken
 
 The time taken to develop, test, deploy, document this web app is apprx. 16 hrs, equivalent to 2 working days.
