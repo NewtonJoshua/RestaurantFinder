@@ -12,11 +12,9 @@ before_script:
   - npm install -g firebase-tools
   - npm install -g @angular/cli
   - npm install -g typedoc
-  - npm install -g lighthouse
 
 script:
   - typedoc --module commonjs --includes src/app --out src/docs
-  - lighthouse https://restaurantfinder.newtonjoshua.com/ --view --output-path=./src/docs/lighthouse-results.html
   - ng build --prod
 
 after_success:
