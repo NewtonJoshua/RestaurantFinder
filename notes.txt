@@ -6,12 +6,12 @@ CSS Lint - csslint src
 
 TS Doc - 
 npm install -g typedoc
-typedoc --module commonjs --includes src/app --out docs
+typedoc --module commonjs --includes src/app --out src/docs
 
 lighthouse
 npm install -g lighthouse
-lighthouse https://restaurantfinder.newtonjoshua.com/ --view --output-path=./docs/lighthouse-results.html
-lighthouse http://localhost:4200/ --view --output-path=./docs/lighthouse-results.html
+lighthouse https://restaurantfinder.newtonjoshua.com/ --view --output-path=./src/docs/lighthouse-results.html
+lighthouse http://localhost:4200/ --view --output-path=./src/docs/lighthouse-results.html
 
 // https://developers.google.com/web/tools/lighthouse/
 // https://www.npmjs.com/package/lighthouse

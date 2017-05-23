@@ -30,4 +30,8 @@ export class HeaderComponent implements OnInit {
     this.afAuth.auth.signOut();
   }
 
+  open(page) {
+    window.open(page, '_blank');
+  }
+
 }

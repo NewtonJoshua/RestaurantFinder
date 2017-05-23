@@ -1,5 +1,14 @@
 <nav class="navbar navbar-inverse bg-inverse navbar-full fixed-top  sticky-top">
   <div class="container">
+    <div ngbDropdown class="float-left">
+      <button class="btn btn-outline-secondary" id="dropdownBasic3" ngbDropdownToggle> 
+        <span class="navbar-toggler-icon"></span>
+        </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownBasic3">
+        <a class="dropdown-item" href="#" (click)="open('docs/globals.html')">Documentation</a>
+        <a class="dropdown-item" href="#" (click)="open('docs/lighthouse-results.html')">Quality</a>
+      </div>
+    </div>
     <img src="../../assets/images/restaurant-71.png" height="30" alt="">
     <a class="navbar-brand" href="#">Restaurant Finder</a>
     <div class="float-right" *ngIf="(user | async)">
